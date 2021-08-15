@@ -10,10 +10,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 @Component
-public class Starter {
+public class DataInitialization {
     private final SaveDataFromXlsx saveDataFromXlsx;
 
-    public Starter(SaveDataFromXlsx saveDataFromXlsx) {
+    public DataInitialization(SaveDataFromXlsx saveDataFromXlsx) {
         this.saveDataFromXlsx = saveDataFromXlsx;
         init();
     }

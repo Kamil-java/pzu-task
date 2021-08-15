@@ -9,20 +9,20 @@ import java.nio.file.*;
 
 @Configuration
 @EnableScheduling
-public class MonitoringXlsxDirectory {
+public class CheckingDataStatus {
     private final SaveDataFromXlsx saveDataFromXlsx;
 
-    public MonitoringXlsxDirectory(SaveDataFromXlsx saveDataFromXlsx) {
+    public CheckingDataStatus(SaveDataFromXlsx saveDataFromXlsx) {
         this.saveDataFromXlsx = saveDataFromXlsx;
     }
 
     @Scheduled(cron = "@weekly")
-    public boolean checkingIsUpdateIsRequired() throws IOException, InterruptedException {
-        WatchService watchService
-                = FileSystems.getDefault().newWatchService();
-
+    public boolean checkingIfNewFilesHaveBeenAdded() throws IOException, InterruptedException {
         String directoryPath = System.getProperty("user.dir") + "/xlsxFiles";
         Path path = Paths.get(directoryPath);
+
+        WatchService watchService
+                = FileSystems.getDefault().newWatchService();
 
         path.register(
                 watchService,
